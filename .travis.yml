@@ -23,6 +23,7 @@ before_script:
 - cmake ..
 - cmake --build . --config Release
 - sudo make install
+- sudo ldconfig
 # gtest
 #- cd /usr/src/gtest
 #- sudo cmake .
