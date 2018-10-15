@@ -10,12 +10,20 @@ addons:
     - g++-8
 #    - libgtest-dev
     - cmake
-    - libblas-dev
-    - liblapack-dev
+    - libopenblas-dev
     - dlib
 
 before_script:
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
+# dlib
+- wget http://dlib.net/files/dlib-19.16.tar.bz2
+- tar xf dlib-19.16.tar.bz2
+- cd dlib-19.16
+- mkdir build
+- cd build
+- cmake ..
+- cmake --build . --config Release
+- sudo make install
 # gtest
 #- cd /usr/src/gtest
 #- sudo cmake .
