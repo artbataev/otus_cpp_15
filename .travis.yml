@@ -10,7 +10,9 @@ addons:
     - g++-8
 #    - libgtest-dev
     - cmake
-    - libopenblas-dev
+#    - libopenblas-dev
+    - libblas-dev
+    - liblapack-dev
 
 before_script:
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
@@ -24,6 +26,7 @@ before_script:
 - cmake --build . --config Release
 - sudo make install
 - sudo ldconfig
+- cd "${TRAVIS_BUILD_DIR}"
 # gtest
 #- cd /usr/src/gtest
 #- sudo cmake .
