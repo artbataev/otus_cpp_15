@@ -11,7 +11,6 @@ addons:
 #    - libgtest-dev
     - cmake
     - libopenblas-dev
-    - dlib
 
 before_script:
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
