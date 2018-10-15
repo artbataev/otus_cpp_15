@@ -16,6 +16,13 @@ target_link_libraries(kkmeans
         lapack
         )
 
+add_executable(data_generator src/data_generator.cpp)
+target_link_libraries(kkmeans
+        dlib
+        blas
+        lapack
+        )
+
 install(TARGETS kkmeans RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
