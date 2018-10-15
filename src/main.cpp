@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
         exit(0);
     }
 
-    int num_clusters = std::stoi(argv[1]);
+    unsigned long num_clusters = std::stoul(argv[1]);
 
     dlib::kcentroid<kernel_t> model_k_centroids(kernel_t(0.1), 0.01, 8);
     dlib::kkmeans<kernel_t> model(model_k_centroids);
