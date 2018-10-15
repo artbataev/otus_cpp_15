@@ -16,8 +16,16 @@ target_link_libraries(kkmeans
         lapack
         )
 
-add_executable(data_generator src/data_generator.cpp)
-target_link_libraries(kkmeans
+add_executable(kkmeans_data_generator src/kkmeans_data_generator.cpp)
+target_link_libraries(kkmeans_data_generator
+        dlib
+        blas
+        lapack
+        )
+
+
+add_executable(stars_data_generator src/stars_data_generator.cpp)
+target_link_libraries(stars_data_generator
         dlib
         blas
         lapack
