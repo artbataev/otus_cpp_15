@@ -45,6 +45,6 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-  - curl -T kkmeans-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -u artbataev:$BINTRAY_API_KEY "https://api.bintray.com/content/artbataev1/Otus_Assignments/Otus_Cpp_13/$TRAVIS_BUILD_NUMBER/kkmeans-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;publish=1"
+  - curl -T kkmeans-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -u artbataev:$BINTRAY_API_KEY "https://api.bintray.com/content/artbataev1/Otus_Assignments/Otus_Cpp_15/$TRAVIS_BUILD_NUMBER/kkmeans-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;publish=1"
   on:
     branch: master
