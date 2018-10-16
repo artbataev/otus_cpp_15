@@ -8,6 +8,7 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-8
+    - gcc-8
 #    - libgtest-dev
     - cmake
 #    - libopenblas-dev
@@ -21,6 +22,7 @@ addons:
 
 before_script:
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
+- sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 90
 # dlib
 - wget http://dlib.net/files/dlib-19.16.tar.bz2
 - tar xf dlib-19.16.tar.bz2
@@ -37,7 +39,17 @@ before_script:
 - cd opencv
 - git checkout 3.4.3
 - mkdir build && cd build
-- cmake ..
+- cmake
+  -DWITH_CUDA=OFF
+  -DWITH_OPENCL=OFF
+  -DWITH_FFMPEG=OFF
+  -DBUILD_JAVA=OFF
+  -DBUILD_opencv_python2=OFF
+  -DBUILD_opencv_python3=OFF
+  -DBUILD_opencv_apps:BOOL=OFF
+  -DWITH_IPP=OFF
+  ..
+#  -DBUILD_SHARED_LIBS=OFF
 - cmake --build . --config Release
 - sudo make install
 - sudo ldconfig
