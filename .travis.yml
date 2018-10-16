@@ -46,6 +46,7 @@ before_script:
   -DBUILD_LIST=core,imgproc,imgcodecs
   -DBUILD_JAVA=OFF
   -DWITH_PROTOBUF=OFF
+  -DBUILD_WEBP=OFF
   -DBUILD_opencv_python2=OFF
   -DBUILD_opencv_python3=OFF
   -DBUILD_opencv_apps=OFF
