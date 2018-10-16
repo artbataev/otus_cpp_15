@@ -13,6 +13,9 @@ addons:
 #    - libopenblas-dev
     - libblas-dev
     - liblapack-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libtiff-dev
     - libopencv-dev
 
 before_script:
