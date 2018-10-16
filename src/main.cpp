@@ -7,7 +7,6 @@
 #include <cmath>
 #include <algorithm>
 #include <opencv2/opencv.hpp>
-#include <opencv2/imgproc.hpp>
 
 
 typedef dlib::matrix<double, 2, 1> point_t;

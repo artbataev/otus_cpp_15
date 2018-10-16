@@ -13,6 +13,7 @@ addons:
 #    - libopenblas-dev
     - libblas-dev
     - liblapack-dev
+    - git
     - libjpeg-dev
     - libpng-dev
     - libtiff-dev
@@ -26,6 +27,16 @@ before_script:
 - cd dlib-19.16
 - mkdir build
 - cd build
+- cmake ..
+- cmake --build . --config Release
+- sudo make install
+- sudo ldconfig
+- cd "${TRAVIS_BUILD_DIR}"
+# opencv
+- git clone https://github.com/opencv/opencv.git
+- cd opencv
+- git checkout 3.4.3
+- mkdir build && cd build
 - cmake ..
 - cmake --build . --config Release
 - sudo make install
