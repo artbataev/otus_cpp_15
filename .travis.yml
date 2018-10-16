@@ -13,6 +13,7 @@ addons:
 #    - libopenblas-dev
     - libblas-dev
     - liblapack-dev
+    - libopencv-dev
 
 before_script:
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90

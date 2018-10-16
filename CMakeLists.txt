@@ -7,6 +7,7 @@ else ()
 endif ()
 
 set(CMAKE_CXX_STANDARD 17)
+find_package( OpenCV REQUIRED )
 
 add_executable(kkmeans src/main.cpp)
 
@@ -14,6 +15,7 @@ target_link_libraries(kkmeans
         dlib
         blas
         lapack
+        ${OpenCV_LIBS}
         )
 
 add_executable(kkmeans_data_generator src/kkmeans_data_generator.cpp)
