@@ -9,13 +9,23 @@ endif ()
 set(CMAKE_CXX_STANDARD 17)
 find_package( OpenCV REQUIRED )
 
-add_executable(kkmeans src/main.cpp)
+include_directories("${PROJECT_SOURCE_DIR}/include")
 
-target_link_libraries(kkmeans
+add_library(visualize include/visualize.h src/visualize.cpp)
+target_link_libraries(visualize
         dlib
         blas
         lapack
         ${OpenCV_LIBS}
+        )
+
+add_executable(kkmeans src/main.cpp)
+
+target_link_libraries(kkmeans
+        visualize
+        dlib
+        blas
+        lapack
         )
 
 add_executable(kkmeans_data_generator src/kkmeans_data_generator.cpp)
