@@ -54,6 +54,7 @@ before_script:
   -DWITH_IPP=OFF
   -DBUILD_PERF_TESTS=OFF
   -DBUILD_TESTS=OFF
+  -DBUILD_SHARED_LIBS=OFF
   ..
 #  -DBUILD_SHARED_LIBS=OFF
 - cmake --build . --config Release
