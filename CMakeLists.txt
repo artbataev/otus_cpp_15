@@ -43,7 +43,9 @@ target_link_libraries(stars_data_generator
         lapack
         )
 
-install(TARGETS kkmeans RUNTIME DESTINATION bin)
+install(TARGETS kkmeans kkmeans_data_generator stars_data_generator
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib)
 
 set(CPACK_GENERATOR DEB)
 
