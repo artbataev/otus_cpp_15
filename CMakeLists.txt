@@ -7,7 +7,7 @@ else ()
 endif ()
 
 set(CMAKE_CXX_STANDARD 17)
-find_package( OpenCV REQUIRED )
+find_package(OpenCV REQUIRED)
 
 include_directories("${PROJECT_SOURCE_DIR}/include")
 
@@ -48,6 +48,7 @@ install(TARGETS kkmeans kkmeans_data_generator stars_data_generator
         LIBRARY DESTINATION lib)
 
 set(CPACK_GENERATOR DEB)
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
