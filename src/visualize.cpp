@@ -50,19 +50,26 @@ void create_diagram(const dlib::kkmeans<kernel_t>& model,
 
     // draw circles around each kernel point, radius proportional to count of points in cluster
     for (unsigned long i = 0; i < num_clusters; i++) {
-        auto radius = static_cast<int>(100.0 / points.size() * points_in_cluster[i]);
+        auto radius = static_cast<int>(150.0 / points.size() * points_in_cluster[i]);
 
         cv::Mat tmp_img(total_img_width, total_img_width, CV_8UC3, white);
         // construct color, where hue is 179 / num_clusters * (i + 1) - so different colors for each cluster
         auto color = hsv2bgr(cv::Scalar(179 / num_clusters * (i + 1), 122, 200));
         auto kernel_points = model.get_kcentroid(i).get_distance_function().get_basis_vectors();
+        // find mean point
+        double x = 0;
+        double y = 0;
         for (const auto& point: kernel_points) {
-            // -point(1): from top to bottom OpenCV y coordinate
-            cv::circle(tmp_img,
-                       cv::Point2d(point(0) / max_distance_from_0 * half_img_width + half_img_width + padding,
-                                   -point(1) / max_distance_from_0 * half_img_width + half_img_width + padding),
-                       radius, /*color=*/color, /*thickness=*/CV_FILLED);
+            x += point(0);
+            y += point(1);
         }
+        x /= kernel_points.size();
+        y /= kernel_points.size();
+        // -y: from top to bottom OpenCV y coordinate
+        cv::circle(tmp_img,
+                   cv::Point2d(x / max_distance_from_0 * half_img_width + half_img_width + padding,
+                               -y / max_distance_from_0 * half_img_width + half_img_width + padding),
+                   radius, /*color=*/color, /*thickness=*/CV_FILLED);
         auto alpha = (num_clusters - 1.0) / num_clusters;
         cv::addWeighted(bubble_hist, alpha, tmp_img, 1 - alpha, 0, bubble_hist);
     }

@@ -28,16 +28,16 @@ std::vector<std::string> split_string(const std::string& str, const char by = ';
 int main(int argc, char *argv[]) {
     if (argc < 2 || argc > 4) {
         std::cout << "Execute with 1, 2 or 3 arguments - number of clusters"
-                     ", optional max_dictionary_size"
+                     ", optional kernel_gamma"
                      " and (optional) filename to write diagram" << std::endl;
-        std::cout << "E.g.: " << argv[0] << " 3 8 diagram.jpg" << std::endl;
+        std::cout << "E.g.: " << argv[0] << " 3 0.1 diagram.jpg" << std::endl;
         exit(0);
     }
 
     unsigned long num_clusters = std::stoul(argv[1]);
-    unsigned long max_dictionary_size = 8;
+    double kernel_gamma = 0.1;
     if (argc >= 3)
-        max_dictionary_size = std::stoul(argv[2]);
+        kernel_gamma = std::stod(argv[2]);
 
     // read data
     std::vector<point_t> points;
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
 
     // construct model
     std::vector<point_t> initial_centers;
-    dlib::kcentroid<kernel_t> model_k_centroids(kernel_t(0.1), 0.01, /*max_dictionary_size=*/max_dictionary_size);
+    dlib::kcentroid<kernel_t> model_k_centroids(kernel_t(kernel_gamma), 0.01);
     dlib::kkmeans<kernel_t> model(model_k_centroids);
 
     model.set_number_of_centers(num_clusters);
